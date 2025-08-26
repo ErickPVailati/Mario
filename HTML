@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Jogo do Mario</title>
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="audio/BackgroundMusic.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="score" class="score">Score: 0</div>
+
+    <div id="game-over" class="game-over hidden">
+        <h1>Game Over</h1>
+        <p>Pressione a Tecla R para reiniciar
+            <p>...</p>
+        </p>
+        <p id="final-score"></p>
+    </div>
+
+    <div class="game-board">
+        <img src="images/clouds.png" class="clouds">
+        <img src="images/mario.gif" class="mario">
+        <img src="images/pipe.png" class="pipe">
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const audio = document.getElementById("bg-music")
+        window.addEventListener("load", () => {
+            const tempoSalvo = localStorage.getItem("tempoMusica")
+            if (tempoSalvo) {
+                audio.currentTime = tempoSalvo;
+            }
+        })
+        let musicaIniciada = false;
+        document.addEventListener("keydown", () => {
+            if(musicaIniciada) {
+                audio.play();
+                musicaIniciada = true;
+            }
+        })
+
+    </script>
+</body>
+</html>
